@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form action="index.php" method = "POST">
+<?php
+if ($_POST){
+    $i = $_POST["i"];
+    $myRange = $_POST["myRange"];
+    $range = $_POST["range"];
+    $range = $i;
+    if ($_POST["comp"] == 0){
+        $comp = rand(1, 100);
+    } else{
+        $comp = $_POST("comp");
+    }
+    $compRange = ceil ($comp / 10);
+} else{
+    $myRange = 0;
+    $range = 0;
+    $comp = 0;
+    $compRange = 0;
+}
+echo("<select name='myRange'>");
+for($i = 10, $range = 1; $i <= 100 && $range <= 10; $i+= 10, $range++){
+    $i = $range;
+    echo("<option value='".$i."'>".$i - 9."..".$i."</option>");
+}
+
+echo("</select>");
+if ($myRange == $compRange){
+    echo("Вітаємо, Ви вгадали діапазон");
+} else {
+    echo("На жаль, Ви не вгадали");
+}
+?>
+<input type="hidden" name="myRange" value="<?php echo($myRange);?>">
+<input type="hidden" name="range" value="<?php echo($range);?>">
+<input type="hidden" name="comp" value="<?php echo($comp);?>">
+<input type="hidden" name="compRange" value="<?php echo($compRange);?>">
+<input type="submit" value="Зробити вибір">
+</form>
+</body>
+</html>
